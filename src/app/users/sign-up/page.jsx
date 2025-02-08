@@ -1,16 +1,48 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import coconut from "@/frontend/assets/log-in/coconut.png";
 import logo from "@/frontend/assets/logos/logo.png";
 import logoName from "@/frontend/assets/logos/logoName.png";
 import Image from "next/image";
 import Router from "next/router";
+import { useForm } from "react-hook-form";
 
 const Page = () => {
     const router = Router;
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
 
-    const handleSubmit = async () => {
-        const response = await fetch("")
+    const [pending, setPending] = useState(false);
+
+    const onSubmit = async (data) => {
+        setPending(true);
+        try {
+            const response = await fetch("https://localhost:5000/api/v1/users/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                }),
+            })
+            const resdata = await response.json();
+            if (!resdata) {
+                throw new Error("Error in fetching data")
+            } else {
+                router.push("/users/log-in")
+            }
+        } catch (error) {
+            console.log("Error in fectching : ", error.message)
+        }
+        finally {
+            setPending(false);
+        }
     }
 
     return (
@@ -34,7 +66,7 @@ const Page = () => {
                         <span className="text-[19.78px] leading-[24.11px] font-extralight ">Connect with us</span>
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-10">
-                        {[{ label: "Name", type: "text" }, { label: "Email or Phone Number", type: "text" }].map(({ label, type, index }) => (
+                        {[{ label: "Name", type: "text" }, { label: "Email", type: "text" }].map(({ label, type, index }) => (
                             <div
                                 key={index}
                                 className="flex flex-col w-full items-center justify-center"
@@ -43,6 +75,12 @@ const Page = () => {
                                     type={type}
                                     placeholder={`${label}`}
                                     className="bg-transparent placeholder-white outline-none border-b border-white w-[80%] text-[19.78px] leading-[24.11px] font-extralight p-2"
+                                    label={label}
+                                    {...register(label, {
+                                        required: label === "Name" ? "Name is required" : "Email is required",
+                                    })}
+                                    disabled={pending}
+                                    error={errors[field]}
                                 />
                             </div>
                         ))}

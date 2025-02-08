@@ -28,7 +28,7 @@ const Page = () => {
                 },
                 body: JSON.stringify({
                     name: data.name,
-                    phone: data.phone,
+                    email: data.email,
                 }),
             })
             const resdata = await response.json();
@@ -67,7 +67,7 @@ const Page = () => {
                         <span className="text-[19.78px] leading-[24.11px] font-extralight ">Connect with us</span>
                     </div>
                     <div className="flex flex-col items-center justify-center space-y-10">
-                        {[{ label: "Name", type: "text" }, { label: "Email or Phone Number", type: "text" }].map(({ label, type }) => (
+                        {[{ label: "Name", type: "text" }, { label: "Email", type: "text" }].map(({ label, type }) => (
                             <div
                                 key={label}
                                 className="flex flex-col w-full items-center justify-center"
@@ -78,7 +78,7 @@ const Page = () => {
                                     className="bg-transparent placeholder-white outline-none border-b border-white w-[80%] text-[19.78px] leading-[24.11px] font-extralight p-2"
                                     label={label}
                                     {...register(label, {
-                                        required: label === "Name" ? "Name is required" : "Email or Phone Number is required",
+                                        required: label === "Name" ? "Name is required" : "Email is required",
                                     })}
                                     disabled={pending}
                                     error={errors[field]}
