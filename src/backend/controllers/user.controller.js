@@ -5,11 +5,11 @@ import { apiResponse } from "../utils/apiResponse.js";
 import nodemailer from "nodemailer";
 
 // Create a transporter for sending emails using Nodemailer.
-// Ensure you have set SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, and SMTP_PASS in your environment.
+// Ensure that your environment variables (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS) are correctly set.
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST, // e.g., "smtp.gmail.com"
-  port: Number(process.env.SMTP_PORT), // e.g., 465 or 587
-  secure: process.env.SMTP_SECURE === "true", // true for port 465, false for other ports
+  host: process.env.SMTP_HOST, // e.g., "smtp.ethereal.email"
+  port: Number(process.env.SMTP_PORT), // e.g., 587 for Ethereal
+  secure: false, // false for port 587, which uses STARTTLS
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS,
@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Get the data from the request body
   const { name, email } = req.body;
 
-  // Check if the required fields are provided
+  // Validate required fields
   if ([name, email].some((field) => field?.trim() === "")) {
     throw new apiError(400, "All fields are required");
   }
@@ -40,32 +40,39 @@ const registerUser = asyncHandler(async (req, res) => {
   // Generate a random 6-digit verification code as a string
   const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
-  // Optionally, you could store the verification code and its expiration time with the user record:
+  // Store the verification code and its expiration time with the user record
   user.verificationCode = verificationCode;
   user.verificationExpires = Date.now() + 3600000; // Code expires in 1 hour
-  await user.save();
+  await user.save({ validateBeforeSave: false });
 
-  // Define the email options
-  const mailOptions = {
-    from: process.env.SMTP_FROM, // Set a verified sender email
-    to: email,
-    subject: "Your Verification Code",
-    text: `Your verification code is: ${verificationCode}`,
-    html: `<p>Your verification code is: <strong>${verificationCode}</strong></p>`,
-  };
-
-  // Attempt to send the verification email
+  // Send the verification email
   try {
-    await transporter.sendMail(mailOptions);
+    let info = await transporter.sendMail({
+      from: process.env.SMTP_USER, // sender address (should match a verified sender)
+      to: email, // recipient
+      subject: "Your Verification Code", // subject line
+      text: `Your verification code is: ${verificationCode}`, // plain text body
+      html: `<p>Your verification code is: <strong>${verificationCode}</strong></p>`, // HTML body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    // If using Ethereal, you can preview the message via the returned URL
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   } catch (error) {
-    console.error("Error sending verification email:", error);
-    throw new apiError(500, "Failed to send verification email");
+    console.error("Error sending email:", error);
+    throw new apiError(500, "Error sending email");
   }
 
-  // Send the response
+  // Send the response back to the client
   return res
     .status(201)
-    .json(new apiResponse(200, user, "User data stored successfully. Verification email sent."));
+    .json(
+      new apiResponse(
+        200,
+        user,
+        "User data stored successfully. Please check your email for the verification code."
+      )
+    );
 });
 
 export { registerUser };
