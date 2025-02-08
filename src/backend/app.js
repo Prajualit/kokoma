@@ -21,6 +21,6 @@ app.use("/temp", express.static("temp"));
 
 // Routes
 import router from "./routes/user.route.js";
-app.use("/api/v1/user", router);
+app.use("/api/v1/users", router);
 
 export { app };

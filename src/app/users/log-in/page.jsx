@@ -28,7 +28,7 @@ const Page = () => {
                 },
                 body: JSON.stringify({
                     name: data.name,
-                    emailOrPhone: data.email || data.phone,
+                    phone: data.phone,
                 }),
             })
             const resdata = await response.json();
