@@ -74,13 +74,13 @@ const Page = () => {
                                 <input
                                     type={type}
                                     placeholder={`${label}`}
-                                    className="bg-transparent placeholder-white outline-none border-b border-white w-[80%] text-[19.78px] leading-[24.11px] font-extralight p-2"
+                                    className="bg-transparent placeholder-white outline-none border-b border-[#ffffff7d] hover:border-white focus-within:border-white transition-colors w-[80%] text-[19.78px] leading-[24.11px] font-extralight p-2"
                                     label={label}
                                     {...register(label, {
                                         required: label === "Name" ? "Name is required" : "Email is required",
                                     })}
                                     disabled={pending}
-                                    error={errors[field]}
+                                    error={errors[label]}
                                 />
                             </div>
                         ))}
