@@ -1,0 +1,22 @@
+.swiper {
+  width: 600px;
+  height: 300px;
+}
+/* Custom Previous Button */
+.custom-prev, .custom-next {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background */
+    color: white; 
+    font-size: 24px; 
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+    transition: background-color 0.3s ease;
+}
+
+.custom-prev:hover, .custom-next:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}

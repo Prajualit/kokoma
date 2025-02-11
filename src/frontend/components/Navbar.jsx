@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className='flex flex-col'>
             {/* Logo Section */}
-            <div className='flex justify-center space-x-2 py-4 items-center w-full'>
+            <div className='flex justify-center space-x-2 py-2 items-center w-full'>
                 <Image width={39} height={54} src={logo} alt="Logo" />
                 <Image width={171} height={32} src={logoName} alt="Logo Name" />
             </div>
