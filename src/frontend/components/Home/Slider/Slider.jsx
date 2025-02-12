@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import arrow from "@/frontend/assets/Slider/arrow.png";
-import coconut from "@/frontend/assets/Slider/sliderImage.png";
+import arrow from "@/frontend/assets/Home/Slider/arrow.png";
+import coconut from "@/frontend/assets/Home/Slider/sliderImage.png";
 
 const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState(1);
@@ -17,13 +17,17 @@ const Slider = () => {
     return (
         <div className=" relative mt-8">
             <Swiper
-                modules={[Navigation, Pagination]}
+                modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={0}
                 slidesPerView={1}
                 loop={true}
                 navigation={{
                     nextEl: ".custom-next",
                     prevEl: ".custom-prev",
+                }}
+                autoplay={{
+                    delay:1000,
+                    disableOnInteraction:false,
                 }}
                 onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
                 className="w-full h-full"
