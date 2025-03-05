@@ -2,6 +2,7 @@ import React from 'react'
 import Slider from './Slider/Slider.jsx'
 import Products from './Products/Products.jsx'
 import CoconutOil from './CoconutOil/CoconutOil.jsx'
+import Explore from './Explore/Explore.jsx'
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <Slider />
             <Products />
             <CoconutOil />
+            <Explore />
         </>
     )
 }
