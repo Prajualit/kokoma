@@ -3,6 +3,7 @@ import Slider from './Slider/Slider.jsx'
 import Products from './Products/Products.jsx'
 import CoconutOil from './CoconutOil/CoconutOil.jsx'
 import Explore from './Explore/Explore.jsx'
+import WhyKokoma from './WhyKokoma/WhyKokoma.jsx'
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <Products />
             <CoconutOil />
             <Explore />
+            <WhyKokoma />
         </>
     )
 }
