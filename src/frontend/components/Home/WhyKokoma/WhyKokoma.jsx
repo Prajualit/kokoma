@@ -7,7 +7,7 @@ const WhyKokoma = () => {
             className='h-[100vh] p-20 bg-cover bg-center'
             style={{ backgroundImage: `url(${bg.src})` }}
         >
-            <div className='bg-white bg-opacity-50 p-10 rounded-3xl h-full flex flex-col space-y-10'>
+            <div className='bg-white bg-opacity-50 p-10 rounded-3xl shadow-lg shadow-black h-full flex flex-col space-y-10'>
                 <h1 className='font-[600] text-[#112D4E] text-[77.66px] leading-[100%] text-left'>
                     Why Kokoma
                 </h1>
