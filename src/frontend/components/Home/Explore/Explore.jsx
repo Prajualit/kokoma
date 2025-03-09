@@ -5,17 +5,17 @@ import Sample from '@/frontend/assets/Home/Explore/sample.png'
 const Explore = () => {
     return (
         <div className='p-20 flex flex-col space-y-14 '>
-            <h1 className='text-[#112D4E] text-left font-[600] text-[77.66px] leading-[100%]'>
+            <h1 className='text-[#112D4E] text-left font-[600] text-[50px] leading-[100%]'>
                 Explore Our Products
             </h1>
-            <div className='w-fit flex flex-col space-y-5'>
-                <div className='bg-[#112D4E] p-6  '>
+            <div className='w-fit flex flex-col space-y-2'>
+                <div className='bg-[#112D4E] p-6 rounded-t-xl '>
                     <div className='flex flex-col items-center space-y-2'>
                         <Image src={Sample} alt="Sample" width={250} height={250} />
                         <span className='text-center font-[300] text-[32px] leading-[100%] '>Product 001</span>
                     </div>
                 </div>
-                <button className='relative group flex justify-between items-center w-full border border-[#112D4E] px-6 py-4 overflow-hidden'>
+                <button className='relative group flex justify-between items-center w-full rounded-b-xl border border-[#112D4E] px-6 py-3 overflow-hidden'>
                     <span className="absolute inset-0 bg-[#112D4E] w-0 group-hover:w-full transition-all duration-300 ease-in-out"></span>
                     <span className='relative text-[#112D4E] group-hover:text-white transition-all duration-300'>
                         Buy now

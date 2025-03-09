@@ -11,7 +11,7 @@ const Products = () => {
     const scrollBarRef = useRef(null);
     const scrollTrackRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
-    const slides = [coconut, coconut, coconut];
+    const slides = [coconut, coconut, coconut, coconut, coconut, coconut, coconut, coconut, coconut, coconut];
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -50,7 +50,7 @@ const Products = () => {
     }, [isDragging]);
 
     return (
-        <div className="h-screen flex flex-col items-center justify-center px-10 py-24">
+        <div className=" flex flex-col items-center justify-center px-10 py-24">
           <div className="flex flex-col items-start justify-center w-full">
             <div className="font-[600] text-[40px] text-[#112D4E] flex items-center space-x-5 ml-10 ">
                 <span>Product 01</span>
@@ -59,7 +59,7 @@ const Products = () => {
             <div className="relative w-full">
                 <Swiper
                     spaceBetween={10}
-                    slidesPerView={1.5}
+                    slidesPerView={2.5}
                     loop={false} // No loop to avoid conflicts
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                     className="w-full"
@@ -67,11 +67,11 @@ const Products = () => {
                     {slides.map((bg, index) => (
                         <SwiperSlide key={index}>
                             <Image
-                                width={890}
-                                height={502}
+                                width={490}
+                                height={302}
                                 src={bg}
                                 alt=""
-                                className="rounded-lg shadow-md w-full h-auto"
+                                className="rounded-lg w-full h-auto"
                             />
                         </SwiperSlide>
                     ))}

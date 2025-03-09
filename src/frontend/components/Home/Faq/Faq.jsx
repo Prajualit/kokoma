@@ -36,8 +36,8 @@ const Faq = () => {
     return (
         <div className='flex flex-col space-y-20 items-center p-20'>
             <div>
-                <h1 className='font-[600] text-[#112D4E] text-[77.66px] leading-[100%] text-center'>FAQ</h1>
-                <h2 className='font-[500] text-[#112D4E] text-[48px] leading-[100%] text-center'>( Frequently Asked Questions )</h2>
+                <h1 className='font-[600] text-[#112D4E] text-[50px] leading-[100%] text-center'>FAQ</h1>
+                <h2 className='font-[500] text-[#112D4E] text-[30px] leading-[100%] text-center'>( Frequently Asked Questions )</h2>
             </div>
             <div className="flex flex-col space-y-4 items-center w-full justify-center">
                 {faqs.map((faq, index) => {

@@ -23,12 +23,12 @@ const Footer = () => {
             style={{ backgroundImage: `url(${FooterBg.src})` }}
         >
             <div className='flex justify-between items-center h-full'>
-                <Image width={503} height={137} src={footerlogo} alt="Logo" />
+                <Image width={400} height={100} src={footerlogo} alt="Logo" />
                 <button className='text-[#f2f1ff] font-[400] text-[16px] leading-[18px] flex items-center flex-col space-y-2 group'>
                     <a href="mailto:official.kokoma@gmail.com">
                         <div
                             className='flex space-x-1 items-center'>
-                            <span className='font-light leading-[34px] md:text-[22px]'>
+                            <span className='font-light leading-[34px] md:text-[20px]'>
                                 official.kokoma@gmail.com
                             </span>
                             <svg className='transition-transform group-hover:translate-x-2' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} color={"white"} fill={"none"}>
