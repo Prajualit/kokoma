@@ -6,7 +6,7 @@ import logo from '@/frontend/assets/logos/logo.png'
 import logoName from '@/frontend/assets/logos/coloredLogoName.png'
 
 const Navbar = () => {
-    const [activeNav, setActiveNav] = useState("Home"); // Default active link
+    const [activeNav, setActiveNav] = useState("Home");
 
     const navComp = [
         { name: 'Home', link: '#Home' },
