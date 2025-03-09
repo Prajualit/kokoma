@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from "framer-motion";
 
 const Faq = () => {
 
@@ -40,48 +41,62 @@ const Faq = () => {
             </div>
             <div className="flex flex-col space-y-4 items-center w-full justify-center">
                 {faqs.map((faq, index) => {
-                    let count = index + 1;
-                    let isOpen = openIndex === index;
+                    const isOpen = openIndex === index;
 
                     return (
-                        <div
+                        <motion.div
                             key={index}
-                            className={`bg-[#112D4E] py-5 px-10 w-[70%] transition-all duration-300 ${isOpen ? "pb-8 rounded-lg " : " rounded-full"
-                                }`}
+                            initial={{ borderRadius: "999px" }}
+                            animate={{ borderRadius: isOpen ? "28px" : "999px" }} // Instantly changes on click
+                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                            className={`bg-[#112D4E] py-5 px-10 w-[70%] transition-all duration-200`}
                         >
-                            <div className="flex justify-between items-center cursor-pointer" onClick={() => toggleFAQ(index)}>
-                                <h1 className="font-[400] text-[#BBE1FA] text-[18.34px] leading-[100%] text-left">
-                                    {count}. {faq.question}
-                                </h1>
-                                <button className="transition-transform duration-300" onClick={() => toggleFAQ(index)}>
+                            <div
+                                className="flex justify-between items-center cursor-pointer"
+                                onClick={() => toggleFAQ(index)}
+                            >
+                                <span className="font-[400] text-[#BBE1FA] text-[18.34px] leading-[100%] text-left">
+                                    {index + 1}. {faq.question}
+                                </span>
+                                <motion.button
+                                    animate={{ rotate: isOpen ? 180 : 0 }} // Rotates instantly
+                                    transition={{ duration: 0.2 }}
+                                >
                                     <svg
+                                        className="hover:translate-y-1 transform transition-transform"
                                         width="26"
                                         height="15"
                                         viewBox="0 0 26 15"
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className={`transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                                            }`}
                                     >
                                         <path
                                             d="M1.39153 3.86325C0.634449 3.06164 0.634409 1.80854 1.39144 1.00688C2.21229 0.137645 3.5952 0.137633 4.41606 1.00685L10.7368 7.69998C11.9207 8.95356 13.9151 8.95361 15.099 7.70008L21.4206 1.00674C22.2415 0.137567 23.6244 0.137613 24.4452 1.00684C25.2022 1.80852 25.2022 3.06165 24.4451 3.86328L15.0993 13.7587C13.9154 15.0122 11.9211 15.0122 10.7372 13.7587L1.39153 3.86325Z"
                                             fill="#BBE1FA"
                                         />
                                     </svg>
-                                </button>
+                                </motion.button>
                             </div>
-                            <div
-                                className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
-                                    }`}
-                            >
-                                <p className="font-[400] text-[#BBE1FA] text-[18.34px] text-left">{faq.answer}</p>
-                            </div>
-                        </div>
+                            <AnimatePresence>
+                                {isOpen && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className="overflow-hidden"
+                                    >
+                                        <p className="font-[400] text-[#BBE1FA] text-left mt-3">
+                                            {faq.answer}
+                                        </p>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
                     );
                 })}
             </div>
-
-        </div>
+        </div >
     )
 }
 
