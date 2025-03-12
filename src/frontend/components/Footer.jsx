@@ -1,5 +1,7 @@
 "use client"
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from "react-redux";
+import { setActiveNav } from "@/frontend/redux/navbar/navbarSlice";
 import FooterBg from '@/frontend/assets/General/FooterBg.png'
 import Image from 'next/image'
 import footerlogo from '@/frontend/assets/logos/footerlogo.png'
@@ -7,14 +9,14 @@ import Link from 'next/link'
 
 const Footer = () => {
 
-    const [activeNav, setActiveNav] = useState("Home");
+    const dispatch = useDispatch();
 
     const footComp = [
-        { name: 'Home', link: '#Home' },
-        { name: 'Our Products', link: '#Products' },
-        { name: 'About us', link: '#About' },
-        { name: 'Contact us', link: '#Contact' },
-        { name: 'Help', link: '#Help' },
+        { name: 'Home', link: '/#Home' },
+        { name: 'Our Products', link: '/#Products' },
+        { name: 'About us', link: '/#About' },
+        { name: 'Contact us', link: '/#Contact' },
+        { name: 'Help', link: '/#Help' },
     ];
 
     return (
@@ -46,7 +48,7 @@ const Footer = () => {
                         <Link
                             href={nav.link}
                             className={`text-white hover:underline underline-offset-2 transition-all duration-300`}
-                            onClick={() => setActiveNav(nav.name)}
+                            onClick={() => dispatch(setActiveNav(nav.name))}
                         >
                             {nav.name}
                         </Link>

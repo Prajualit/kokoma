@@ -12,11 +12,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const navComp = [
-    { name: "Home", link: "#Home" },
-    { name: "Our Products", link: "#Products" },
-    { name: "About us", link: "#About" },
-    { name: "Contact us", link: "#Contact" },
-    { name: "Help", link: "#Help" },
+    { name: "Home", link: "/#Home" },
+    { name: "Our Products", link: "/#Products" },
+    { name: "About us", link: "/#About" },
+    { name: "Contact us", link: "/#Contact" },
+    { name: "Help", link: "/#Help" },
   ];
 
   return (

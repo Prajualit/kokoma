@@ -47,7 +47,7 @@ const Faq = () => {
                         <motion.div
                             key={index}
                             initial={{ borderRadius: "999px" }}
-                            animate={{ borderRadius: isOpen ? "28px" : "999px" }} // Instantly changes on click
+                            animate={{ borderRadius: isOpen ? "15px" : "999px" }} // Instantly changes on click
                             transition={{ duration: 0.2, ease: "easeInOut" }}
                             className={`bg-[#112D4E] py-5 px-10 w-[70%] transition-all duration-200`}
                         >
