@@ -1,11 +1,10 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { store } from "@/frontend/redux/Store.js";
-import { Provider } from "react-redux";
+import ReduxProvider from "@/frontend/redux/reduxProvider.js";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "700"], // specify weights if needed
+  weight: ["200", "300", "400", "700"],
 });
 
 export const metadata = {
@@ -17,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
-        <Provider store={store}>{children}</Provider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
