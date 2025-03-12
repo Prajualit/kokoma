@@ -8,6 +8,8 @@ import CartFloater from "@/frontend/components/Cart/CartFloater";
 import AboutUs from "@/frontend/components/AboutUs/AboutUs.jsx";
 import ContactUs from "@/frontend/components/ContactUs/ContactUs.jsx";
 import Help from "@/frontend/components/Help/Help.jsx";
+import ScrollProgressButton from "@/frontend/components/Home/ScrollProgressButton.jsx";
+
 export default function Home() {
   const activeNav = useSelector((state) => state.navbar.activeNav);
 
@@ -15,12 +17,13 @@ export default function Home() {
     <>
       <Navbar />
       <CartFloater />
+      <ScrollProgressButton />
       {activeNav === "Home" && <Pagehome />}
       {activeNav === "Our Products" && <Products />}
       {activeNav === "About us" && <AboutUs />}
       {activeNav === "Contact us" && <ContactUs />}
       {activeNav === "Help" && <Help />}
-      <Footer />  
+      <Footer />
     </>
   );
 }
