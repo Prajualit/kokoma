@@ -31,20 +31,17 @@ const Navbar = () => {
       <div className="flex justify-evenly items-center p-5 font-extralight w-full bg-[#112D4E] relative">
         {navComp.map((nav) => (
           <div key={nav.name} className="flex flex-col items-center">
-            <Link
-              href={nav.link}
-              className={`text-white transition-all duration-300 ${
-                activeNav === nav.name ? "font-semibold" : ""
-              }`}
+            <button
+              className={`text-white transition-all duration-300 ${activeNav === nav.name ? "font-semibold" : ""
+                }`}
               onClick={() => dispatch(setActiveNav(nav.name))} // Dispatch Redux action
             >
               {nav.name}
-            </Link>
+            </button>
             {/* Yellow underline appears only on the active item */}
             <div
-              className={`w-[5%] h-[5px] absolute bottom-0 rounded-t-full bg-[#FFEB00] transition-all duration-300 ${
-                activeNav === nav.name ? "opacity-100" : "opacity-0"
-              }`}
+              className={`w-[5%] h-[5px] absolute bottom-0 rounded-t-full bg-[#FFEB00] transition-all duration-300 ${activeNav === nav.name ? "opacity-100" : "opacity-0"
+                }`}
             ></div>
           </div>
         ))}
